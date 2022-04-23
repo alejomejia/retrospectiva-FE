@@ -1,9 +1,19 @@
-import type { NextPage } from 'next'
+import type { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
+import { fetchWooCommerceProducts } from 'utils/wooCommerceApi'
+
+import { Product } from 'utils/types/woocomerce'
+
+interface HomeProps {
+  products: Product[]
+}
+
+const Home: NextPage = ({ products }: any) => {
+  console.log({ products })
+
   return (
     <div className={styles.container}>
       <Head>
@@ -67,6 +77,25 @@ const Home: NextPage = () => {
       </footer>
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const wooCommerceProducts = await fetchWooCommerceProducts().catch((error) =>
+    console.error(error)
+  )
+
+  if (!wooCommerceProducts) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      products: wooCommerceProducts.data,
+    },
+    // revalidate: 60 // regenerate page with new data fetch after 60 seconds
+  }
 }
 
 export default Home
