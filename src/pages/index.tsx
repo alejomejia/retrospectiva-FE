@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-import { fetchWooCommerceProducts } from 'utils/wooCommerceApi'
+import { fetchWooCommerceProducts } from 'utils/api/wooCommerceApi'
 
 import { Product } from 'utils/types/woocomerce'
 

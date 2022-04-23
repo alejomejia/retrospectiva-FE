@@ -1,8 +1,14 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 
+import GlobalCSS from 'utils/styled/global'
+
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <GlobalCSS />
+      <Component {...pageProps} />
+    </>
+  )
 }
 
 export default MyApp
