@@ -14,7 +14,7 @@ const resetCSS = css`
 
   html,
   body,
-  #root {
+  #__next {
     min-height: 100vh;
   }
 
@@ -49,7 +49,7 @@ const resetCSS = css`
     overflow-wrap: break-word;
   }
 
-  #root {
+  #__next {
     isolation: isolate;
   }
 `
