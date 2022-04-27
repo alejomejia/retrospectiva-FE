@@ -1,11 +1,22 @@
 import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api'
 
-const api = new WooCommerceRestApi({
-  url: 'http://localhost:8888/nextjs-woo/',
-  consumerKey: process.env.WOOCOMMERCE_KEY!,
-  consumerSecret: process.env.WOOCOMMERCE_SECRET!,
-  version: 'wc/v3',
-})
+const isDevelopmentEnv = process.env.NODE_ENV === 'development'
+
+const developmentConfig = {
+  url: process.env.DEV_WOOCOMMERCE_API_URL!,
+  consumerKey: process.env.DEV_WOOCOMMERCE_KEY!,
+  consumerSecret: process.env.DEV_WOOCOMMERCE_SECRET!,
+}
+
+const productionConfig = {
+  url: process.env.PROD_WOOCOMMERCE_API_URL!,
+  consumerKey: process.env.PROD_WOOCOMMERCE_KEY!,
+  consumerSecret: process.env.PROD_WOOCOMMERCE_SECRET!,
+}
+
+const apiConfig = isDevelopmentEnv ? developmentConfig : productionConfig
+
+const api = new WooCommerceRestApi({ ...apiConfig, version: 'wc/v3' })
 
 export async function fetchWooCommerceProducts() {
   try {
