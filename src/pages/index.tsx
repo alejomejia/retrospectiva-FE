@@ -2,7 +2,7 @@ import type { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import { fetchWooCommerceProducts } from 'utils/api/wooCommerceApi'
+import { getProducts } from 'utils/woocommerce/products'
 
 import { Product } from 'utils/types/woocomerce'
 
@@ -27,7 +27,7 @@ const Home: NextPage = ({ products }: any) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const wooCommerceProducts = await fetchWooCommerceProducts().catch((error) =>
+  const wooCommerceProducts = await getProducts().catch((error) =>
     console.error(error)
   )
 

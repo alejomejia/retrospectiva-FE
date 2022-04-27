@@ -18,11 +18,4 @@ const apiConfig = isDevelopmentEnv ? developmentConfig : productionConfig
 
 const api = new WooCommerceRestApi({ ...apiConfig, version: 'wc/v3' })
 
-export async function fetchWooCommerceProducts() {
-  try {
-    const response = await api.get('products')
-    return response
-  } catch (error: any) {
-    throw new Error(error)
-  }
-}
+export default api
