@@ -4,7 +4,11 @@ Run on the terminal:
 
 ```bash
 npm run mc COMPONENT_NAME
-# or
+```
+
+or...
+
+```bash
 yarn mc COMPONENT_NAME
 ```
 
