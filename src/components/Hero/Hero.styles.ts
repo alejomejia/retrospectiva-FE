@@ -1,9 +1,19 @@
 import styled from 'styled-components'
 
-export const HeroWrapper = styled.div`
+export const HeroWrapper = styled.section`
   position: relative;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.colors.siam[400]};
+`
+
+export const ContentWrapper = styled.div`
+  height: 100vh;
+  padding-top: ${({ theme }) => theme.sizes.navbarMobileHeight}px;
+`
+
+export const Content = styled.div`
+  min-height: 100%;
+  padding: 24px 10px;
 `
 
 export const GrainyBackground = styled.div`

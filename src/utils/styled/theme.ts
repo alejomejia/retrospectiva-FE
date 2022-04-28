@@ -25,6 +25,10 @@ const theme = {
       100: '#D19C75',
     },
   },
+  sizes: {
+    navbarMobileHeight: 44,
+    navbarDesktopHeight: 90,
+  },
 }
 
 export default theme

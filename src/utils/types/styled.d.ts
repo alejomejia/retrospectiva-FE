@@ -28,5 +28,9 @@ declare module 'styled-components' {
         100: string
       }
     }
+    sizes: {
+      navbarMobileHeight: number
+      navbarDesktopHeight: number
+    }
   }
 }

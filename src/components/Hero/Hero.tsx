@@ -4,7 +4,9 @@ export interface HeroProps {}
 
 const Hero = ({}: HeroProps) => (
   <S.HeroWrapper>
-    Hero
+    <S.ContentWrapper>
+      <S.Content>Hero</S.Content>
+    </S.ContentWrapper>
     <S.GrainyBackground />
   </S.HeroWrapper>
 )
