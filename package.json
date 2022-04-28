@@ -7,7 +7,7 @@
     "build": "NODE_ENV=production next build",
     "start": "next start",
     "lint": "next lint",
-    "mc": "node src/utils/scripts/make-component.mjs"
+    "rc": "node src/utils/scripts/react-component.mjs"
   },
   "dependencies": {
     "next": "12.1.5",
