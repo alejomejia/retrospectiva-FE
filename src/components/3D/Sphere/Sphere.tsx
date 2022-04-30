@@ -12,13 +12,16 @@ const Sphere = ({}: SphereProps) => {
 
   useEffect(() => {
     const currentRef = ref.current
+    const { clientWidth: width, clientHeight: height } = currentRef
+
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
     const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(25, width / height, 0.1, 1000)
 
-    mountScene(currentRef, renderer, scene)
+    mountScene({ currentRef, renderer, scene, camera })
 
     return () => {
-      unmountScene(currentRef, renderer, scene)
+      unmountScene({ currentRef, renderer, camera })
     }
   }, [])
 
