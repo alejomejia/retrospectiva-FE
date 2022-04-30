@@ -13,7 +13,7 @@ export const ContentWrapper = styled.div`
   padding-top: ${({ theme }) => theme.sizes.navbarMobileHeight}px;
 `
 
-export const NoiseWrapper = styled.div`
+export const BackgroundWrapper = styled.div`
   position: absolute;
   inset: 0;
   z-index: 1;

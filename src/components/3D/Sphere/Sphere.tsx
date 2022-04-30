@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
 import * as THREE from 'three'
 
-import { mountScene, unmountScene } from 'utils/three/main'
+import { mountScene, unmountScene } from 'utils/three'
 
 import * as S from './Sphere.styles'
 
@@ -23,7 +23,7 @@ const Sphere = ({}: SphereProps) => {
       renderer,
       scene,
       camera,
-      element: 'sphere',
+      element: 'square',
       animation: 'yAxisInfiniteMovement',
     })
 
