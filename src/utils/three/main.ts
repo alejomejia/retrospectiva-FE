@@ -7,11 +7,12 @@ import {
   ThreeElements,
   ThreeMountSceneParams,
   ThreeUnmountSceneParams,
+  ThreeAnimations,
 } from 'utils/types/three'
 
 const geometries: ThreeGeometries = {
   box: new THREE.BoxBufferGeometry(),
-  sphere: new THREE.SphereBufferGeometry(),
+  sphere: new THREE.SphereBufferGeometry(1, 64, 32),
 }
 
 const material: ThreeMaterial = new THREE.MeshStandardMaterial({
@@ -33,6 +34,8 @@ export const mountScene = ({
   renderer,
   scene,
   camera,
+  element,
+  animation,
 }: ThreeMountSceneParams) => {
   const { clientWidth: width, clientHeight: height } = currentRef
   const { domElement } = renderer
@@ -41,29 +44,41 @@ export const mountScene = ({
   currentRef.appendChild(domElement)
 
   scene.add(camera)
-  scene.add(elements.square)
+  scene.add(elements[element])
   scene.add(lights.ambient)
   scene.add(lights.point)
 
-  lights.point.position.set(-50, -50, 50)
+  lights.point.position.set(150, 150, 50)
   camera.position.set(5, 0, 10)
 
-  camera.lookAt(elements.square.position)
+  camera.lookAt(elements[element].position)
 
   const clock = new THREE.Clock()
 
-  const animate = () => {
-    const elapsedTime = clock.getElapsedTime()
+  const animations: ThreeAnimations = {
+    idle: () => {
+      renderer.render(scene, camera)
+    },
+    centerInfiniteRotation: () => {
+      const elapsedTime = clock.getElapsedTime()
 
-    elements.square.rotation.x = elapsedTime
-    elements.square.rotation.y = elapsedTime
-    // elements.square.position.y = Math.sin(elapsedTime)
+      elements[element].rotation.set(elapsedTime, elapsedTime, 0)
 
-    renderer.render(scene, camera)
-    requestAnimationFrame(animate)
+      renderer.render(scene, camera)
+      requestAnimationFrame(animations.centerInfiniteRotation)
+    },
+    yAxisInfiniteMovement: () => {
+      const elapsedTime = clock.getElapsedTime()
+
+      elements[element].rotation.set(elapsedTime, elapsedTime, 0)
+      elements[element].position.y = Math.sin(elapsedTime)
+
+      renderer.render(scene, camera)
+      requestAnimationFrame(animations.yAxisInfiniteMovement)
+    },
   }
 
-  animate()
+  animation ? animations[animation]() : animations.idle()
 
   const handleResize = () => {
     const updateWidth = currentRef.clientWidth

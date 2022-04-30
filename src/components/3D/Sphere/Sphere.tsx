@@ -18,7 +18,14 @@ const Sphere = ({}: SphereProps) => {
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(25, width / height, 0.1, 1000)
 
-    mountScene({ currentRef, renderer, scene, camera })
+    mountScene({
+      currentRef,
+      renderer,
+      scene,
+      camera,
+      element: 'sphere',
+      animation: 'yAxisInfiniteMovement',
+    })
 
     return () => {
       unmountScene({ currentRef, renderer, camera })

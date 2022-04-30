@@ -15,11 +15,19 @@ export interface ThreeElements {
   sphere: THREE.Mesh
 }
 
+export interface ThreeAnimations {
+  idle: () => void
+  centerInfiniteRotation: () => void
+  yAxisInfiniteMovement: () => void
+}
+
 export interface ThreeMountSceneParams {
   currentRef: HTMLElement
   renderer: THREE.WebGLRenderer
   scene: THREE.Scene
   camera: THREE.PerspectiveCamera
+  element: keyof ThreeElements
+  animation?: keyof ThreeAnimations
 }
 
 export interface ThreeUnmountSceneParams {
