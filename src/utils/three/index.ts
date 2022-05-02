@@ -11,7 +11,7 @@ import {
 } from 'utils/types/three'
 
 const geometries: ThreeGeometries = {
-  box: new THREE.BoxBufferGeometry(1.5, 1.5, 1.5),
+  box: new THREE.BoxBufferGeometry(1, 1, 1),
   sphere: new THREE.SphereBufferGeometry(1, 64, 32),
 }
 
@@ -70,7 +70,7 @@ export const mountScene = ({
     yAxisInfiniteMovement: () => {
       const elapsedTime = clock.getElapsedTime()
 
-      elements[element].rotation.set(elapsedTime, elapsedTime, 0)
+      elements[element].rotation.set(elapsedTime * 0.25, elapsedTime * 0.25, 0)
       elements[element].position.y = Math.sin(elapsedTime * 0.25)
 
       renderer.render(scene, camera)
