@@ -32,8 +32,7 @@ const validateInput = (input) => {
 validateInput(userInput)
 
 // Transform input to match component naming rules
-const userInputLowerCase = userInput.toLowerCase()
-const userInputArray = userInputLowerCase.split('')
+const userInputArray = userInput.split('')
 const capitalizeInput = userInputArray[0].toUpperCase()
 const componentName = userInputArray
   .join('')
